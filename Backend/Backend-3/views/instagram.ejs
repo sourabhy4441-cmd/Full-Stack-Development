@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+</head>
+<body>
+    <h2> This Page belongs to @
+        <%=  username  %>
+    </h2>
+    <button> Follow </button>
+    <button> Message </button>
+
+    <h3> Followers list :</h3>
+
+    <ul>
+        <% for(let name of followers) {%>
+            <li><%= name %></li>
+        <% } %>  
+    </ul>
+
+
+    <!-- instagram page with EJS -->
+
+</body>
+</html>
