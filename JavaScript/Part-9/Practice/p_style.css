@@ -1,0 +1,13 @@
+.red{
+    color: red;
+}
+
+.blue{
+    color: blue;
+}
+
+
+.box{
+    border: black 2px solid;
+    background-color: pink;
+}
