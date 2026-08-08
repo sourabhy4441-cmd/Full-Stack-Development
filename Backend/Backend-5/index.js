@@ -84,6 +84,60 @@ app.get("/show",(req,res)=>{
 });
 
 
+
+// Edit Route
+app.get("/user/:id/edit",(req,res)=>{
+  let {id} = req.params;
+  res.render("edit.ejs");
+  let q = `SELECT * FROM user WHERE id ='${id}'`;
+
+  try{
+    connection.query(q , (err,result) => {
+      if(err) throw err;
+      let user = result[0];
+      res.render("edit.ejs", {user});
+    });
+
+  } catch(err) {
+    console.log(err);
+    res.render("Some ERROR in DB");
+  }
+});
+
+
+
+// UPDATE Route
+app.patch("/user/:id",(req,res)=>{
+  // res.send("updated");
+
+  let {id} = req.params;
+  let {password: formPass, username: newUsername} = req.body;
+   let q = `SELECT * FROM user WHERE id ='${id}'`;
+
+  try{
+    connection.query(q , (err,result) => {
+      if(err) throw err;
+      let user = result[0];
+     if(formPass != user.password){
+      res.send("Password is incorrect");
+     } else{
+        let q2 = `UPDATE user SET username = '${newUsername}' WHERE id = '${id}'`;
+        connection.query(q2, (err,result) => {
+          if(err) throw err;
+          res.redirect("/user");
+        });
+     }
+      res.send(user);
+    });
+
+  } catch(err) {
+    console.log(err);
+    res.send("Some ERROR in DB");
+  }
+});
+
+
+
 app.listen("8080",()=>{
   console.log("server is running on port 8080");
 });
