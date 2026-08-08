@@ -24,11 +24,19 @@
                 <td> <%= user.id %> </td>
                 <td> <%= user.username %> </td>
                 <td> <%= user.email %> </td>
+                
+                <td>
+                    <form action="/user/<%= user.id %>/edit" method="GET">
+                        <button> Edit Username </button>
+                    </form>
+                </td>
+                
             </tr>
         <% } %>
 
     </table>
 </body>
 </html>
+
 
 
